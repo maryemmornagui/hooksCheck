@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import Filter from './components/Filter';
 import MoviesList from './components/MoviesList';
 import AddMovie from './components/AddMovie';
 import './App.css';
+import InfoMovie from './components/InfoMovie';
 
 function App() {
 
@@ -77,7 +79,21 @@ function App() {
 
 
   return (
+    <BrowserRouter>
     <div className="App">
+    
+
+    <Route
+          path="/movie/:Tiltle"
+          render={(props) => <InfoMovie {...props} moviesList={moviesList} />}
+        />
+
+<Route
+          path="/"
+          render={() => (
+            <>
+
+
       <Filter
         setNameSearch={setNameSearch}
         ratingSearch={ratingSearch}
@@ -91,8 +107,16 @@ function App() {
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <AddMovie addNewMovie={addNewMovie} />
       </div>
+
+      </>
+
+)}
+target="_blank"
+/>
+
       
     </div>
+    </BrowserRouter>
   );
 }
 
